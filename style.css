@@ -1,28 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Parisienne&family=Poppins:wght@300;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Parisienne&family=Great+Vibes&display=swap');
 
 :root {
-  --rosa-palo: #f8d7da;
-  --rosa-fuerte: #ff5f8f;
-  --rosa-hover: #ff80a8;
+  --rosa-palo: #fbe4ec;
+  --rosa-fuerte: #ff80a8;
+  --rosa-hover: #ff9fbd;
   --texto: #703f52;
+  --texto-oscuro: #4a2837;
 }
 
 body {
   margin: 0;
   height: 100vh;
-  background: linear-gradient(135deg, var(--rosa-palo), #fce4ec);
+  background: linear-gradient(135deg, var(--rosa-palo), #f9d9e2);
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  font-family: 'Poppins', sans-serif;
-  overflow: hidden;
+  font-family: 'Great Vibes', cursive;
+  overflow-x: hidden;
+  color: var(--texto);
+  text-align: center;
+  padding: 20px;
 }
 
 .title {
   font-family: 'Parisienne', cursive;
-  font-size: 3.5rem;
-  color: var(--texto);
+  font-size: 3rem;
+  color: var(--texto-oscuro);
   text-shadow: 2px 2px 10px rgba(255, 192, 203, 0.6);
   margin-bottom: 40px;
   animation: float 3s ease-in-out infinite;
@@ -30,59 +34,120 @@ body {
 
 .buttons {
   display: flex;
-  gap: 20px;
   flex-wrap: wrap;
+  gap: 20px;
   justify-content: center;
 }
 
 .btn {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.5rem;
   background-color: var(--rosa-fuerte);
   color: white;
   border: none;
-  border-radius: 50px;
-  padding: 15px 40px;
-  font-size: 1.1rem;
-  font-weight: 500;
+  border-radius: 40px;
+  padding: 12px 35px;
   cursor: pointer;
   box-shadow: 0 4px 15px rgba(255, 105, 135, 0.4);
   transition: all 0.3s ease;
-  position: relative;
 }
 
 .btn:hover {
-  transform: translateY(-5px) scale(1.05);
+  transform: scale(1.08);
   background-color: var(--rosa-hover);
   box-shadow: 0 6px 20px rgba(255, 105, 135, 0.6);
 }
 
-.btn.secondary {
-  background-color: #f48fb1;
+.contact-section {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  text-align: center;
+  animation: fadeIn 0.7s ease-in-out forwards;
+  width: 100%;
+  max-width: 400px;
 }
 
-.btn.secondary:hover {
-  background-color: #ffb6c1;
+.contact-section.show {
+  display: flex;
 }
 
-/* Animación sutil flotante */
+.contact-section h2 {
+  font-family: 'Great Vibes', cursive;
+  color: var(--texto-oscuro);
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+.whatsapp-btn {
+  margin-top: 20px;
+  background-color: #25D366;
+  color: white;
+  text-decoration: none;
+  padding: 12px 30px;
+  border-radius: 40px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  box-shadow: 0 4px 10px rgba(37, 211, 102, 0.4);
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.whatsapp-btn:hover {
+  background-color: #1da851;
+  transform: scale(1.07);
+}
+
+/* Animaciones */
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
 }
 
-/* Fondo animado suave */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Fondo decorativo */
 body::before {
   content: "";
   position: absolute;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(255, 192, 203, 0.5), transparent 70%);
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(255, 182, 193, 0.5), transparent 70%);
   border-radius: 50%;
-  bottom: -100px;
+  bottom: -120px;
   right: -100px;
   animation: move-bg 8s ease-in-out infinite alternate;
+  z-index: -1;
 }
 
 @keyframes move-bg {
   0% { transform: translate(0, 0); }
   100% { transform: translate(-40px, -30px); }
+}
+
+/* 💖 Adaptación a móviles */
+@media (max-width: 600px) {
+  .title {
+    font-size: 2.4rem;
+    margin-bottom: 30px;
+  }
+
+  .btn {
+    font-size: 1.2rem;
+    padding: 10px 25px;
+  }
+
+  .contact-section {
+    width: 100%;
+    max-width: 90vw;
+  }
+
+  .whatsapp-btn {
+    font-size: 0.95rem;
+    padding: 10px 20px;
+  }
 }
