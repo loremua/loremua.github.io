@@ -4,23 +4,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contacto - Lore Rodriguez’s Makeup</title>
-  <link rel="stylesheet" href="style.css">
+
+  <!-- Fuentes -->
   <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+  <!-- Logo -->
+  <img src="img.png" alt="Logo Lore Rodriguez" class="logo">
+
+  <!-- Contenedor principal -->
   <div class="container">
     <h1 class="title">📍 Contáctame</h1>
-
     <h2 class="subtitle">Encuéntrame aquí 💋</h2>
-    <iframe 
-      src="https://maps.app.goo.gl/52ZHQVm94eeHxuL87?g_st=ipc"
-      width="100%" height="250" 
-      style="border:0; border-radius: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.2);" 
-      allowfullscreen="" loading="lazy"></iframe>
 
-    <a href="http://wa.me/593969426732" target="_blank" class="whatsapp-btn">💬 Escríbeme por WhatsApp</a>
+    <!-- Mapa embebido -->
+    <div class="map-container">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3162.917723259579!2d-3.7037902!3d40.4167754!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd42289cddf1a1bb%3A0x7b1dbd9a1c1c35f7!2sMadrid%2C%20España!5e0!3m2!1ses!2ses!4v1730748570000!5m2!1ses!2ses"
+        width="100%"
+        height="300"
+        style="border:0; border-radius: 20px; box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
 
-    <a href="index.html" class="back-btn">⬅️ Volver</a>
+    <!-- Botón de WhatsApp -->
+    <a href="https://wa.me/593969426732" target="_blank" class="whatsapp-btn">💬 Escríbeme por WhatsApp</a>
+
+    <!-- Botón volver -->
+    <a href="index.html" class="back-btn">Volver</a>
   </div>
 </body>
 </html>
