@@ -1,8 +1,11 @@
+/* === IMPORTAR FUENTES === */
+@import url('https://fonts.googleapis.com/css2?family=Parisienne&family=Great+Vibes&display=swap');
+
 /* === ESTILO GENERAL === */
 body {
   background-color: #000;
   color: #fff;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Great Vibes', cursive;
   text-align: center;
   margin: 0;
   padding: 0;
@@ -28,9 +31,10 @@ body {
 /* === TÍTULO === */
 .title {
   font-family: 'Parisienne', cursive;
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   color: gold;
   margin-bottom: 40px;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
 }
 
 /* === GALERÍA === */
@@ -59,18 +63,22 @@ body {
 .back-btn {
   display: inline-block;
   margin-top: 40px;
-  padding: 12px 28px;
+  padding: 12px 35px;
+  background: linear-gradient(145deg, gold, #f7e27e);
   color: #000;
-  background-color: gold;
   text-decoration: none;
-  border-radius: 25px;
-  font-weight: bold;
-  transition: background 0.3s, transform 0.2s;
+  border-radius: 30px;
+  font-family: 'Parisienne', cursive;
+  font-size: 1.5rem;
+  font-weight: 600;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+  transition: all 0.3s ease;
 }
 
 .back-btn:hover {
-  background-color: #ffd700;
-  transform: scale(1.05);
+  transform: scale(1.08);
+  background: linear-gradient(145deg, #f7e27e, gold);
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
 }
 
 /* === RESPONSIVE === */
@@ -82,7 +90,7 @@ body {
   }
 
   .title {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
 
   .gallery {
@@ -96,6 +104,7 @@ body {
 
   .back-btn {
     margin-top: 30px;
-    padding: 10px 24px;
+    font-size: 1.2rem;
+    padding: 10px 25px;
   }
 }
