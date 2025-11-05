@@ -29,7 +29,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 28px; /* MÁS ESPACIO SOLICITADO */
+  gap: 65px; 
 }
 
 .title {
