@@ -35,70 +35,57 @@
     <a href="index.html" class="back-btn">Volver</a>
   </div>
 
-  <!-- Lightbox modal -->
-  <div id="lightbox" class="lightbox" aria-hidden="true">
-    <div class="lightbox-content" role="dialog" aria-modal="true">
-      <button class="close" aria-label="Cerrar">&times;</button>
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox">
+    <div class="lightbox-content">
+      <button class="close">&times;</button>
       <img class="lightbox-img" src="" alt="">
       <p class="caption"></p>
     </div>
   </div>
 
-  <!-- JS del lightbox -->
-  <script>
-    (function(){
-      const images = document.querySelectorAll('.gallery img');
-      const lightbox = document.getElementById('lightbox');
-      const content = document.querySelector('.lightbox-content');
-      const lightboxImg = document.querySelector('.lightbox-img');
-      const caption = document.querySelector('.caption');
-      const closeBtn = document.querySelector('.close');
-
-      function openLightbox(src, alt, captionText) {
-        lightboxImg.src = src;
-        lightboxImg.alt = alt || '';
-        caption.textContent = captionText || '';
-        lightbox.classList.add('open');
-        lightbox.setAttribute('aria-hidden', 'false');
-        if (window.innerWidth > 600) document.body.style.overflow = 'hidden';
-        // focus para accesibilidad
-        closeBtn.focus();
-      }
-
-      function closeLightbox() {
-        lightbox.classList.remove('open');
-        lightbox.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = ''; // restaurar scroll
-        lightboxImg.src = '';
-        caption.textContent = '';
-      }
-
-      images.forEach(img => {
-        img.addEventListener('click', (e) => {
-          openLightbox(img.src, img.alt, img.dataset.caption || img.alt);
-        });
-        img.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter') openLightbox(img.src, img.alt, img.dataset.caption || img.alt);
-        });
-      });
-
-      // cerrar al pulsar la X
-      closeBtn.addEventListener('click', closeLightbox);
-
-      // cerrar al pulsar fuera del content
-      lightbox.addEventListener('click', (e) => {
-        if (!content.contains(e.target)) closeLightbox();
-      });
-
-      // cerrar con Escape
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
-      });
-    })();
-  </script>
+  <!-- JS -->
   <script>
     const images = document.querySelectorAll('.gallery img');
-    
+    const lightbox = document.getElementById('lightbox');
+    const content = document.querySelector('.lightbox-content');
+    const lightboxImg = document.querySelector('.lightbox-img');
+    const caption = document.querySelector('.caption');
+    const closeBtn = document.querySelector('.close');
+
+    function openLightbox(src, alt, captionText) {
+      lightboxImg.src = src;
+      caption.textContent = captionText || alt;
+      lightbox.classList.add('open');
+      document.body.style.overflow = "hidden";
+      closeBtn.focus();
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = "";
+      lightboxImg.src = "";
+    }
+
+    // ⭐ DESHABILITAR CLICK EN MÓVIL
+    images.forEach(img => {
+      img.addEventListener('click', () => {
+        if (window.innerWidth <= 600) return;
+        openLightbox(img.src, img.alt, img.dataset.caption || img.alt);
+      });
+    });
+
+    closeBtn.addEventListener('click', closeLightbox);
+
+    lightbox.addEventListener('click', e => {
+      if (!content.contains(e.target)) closeLightbox();
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Aparición suave de imágenes al hacer scroll
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -107,7 +94,7 @@
         }
       });
     }, { threshold: 0.2 });
-    
+
     images.forEach(img => observer.observe(img));
   </script>
 </body>
