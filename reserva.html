@@ -19,7 +19,7 @@
   <!-- SECCIÓN SUPERIOR -->
   <header class="header">
     <h1 class="title">Reserva tu cita</h1>
-    <p class="subtitle">Selecciona el servicio, fecha y hora que más te convenga ✨</p>
+    <p class="subtitle">Selecciona el servicio, fecha y hora que más te convenga</p>
   </header>
 
   <!-- CONTENEDOR PRINCIPAL -->
@@ -86,7 +86,7 @@
         return;
       }
 
-      const mensaje = `¡Hola Lore! Quisiera realizarme ${servicio} el día ${fecha} a las ${hora} ✨`;
+      const mensaje = `¡Hola Lore! Quisiera realizarme ${servicio} el día ${fecha} a las ${hora}`;
       const urlWhats = `https://api.whatsapp.com/send?phone=593969426732&text=${encodeURIComponent(mensaje)}`;
       window.open(urlWhats, '_blank');
     });
