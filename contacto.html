@@ -62,6 +62,20 @@
       </div>
     </div>
   </div>
+  
+  <script>
+  // Al hacer clic en el mapa, entra o sale del modo pantalla completa
+  document.querySelector('.map-container').addEventListener('click', function() {
+    if (!document.fullscreenElement) {
+      this.requestFullscreen().catch(err => {
+        console.warn(`No se pudo activar el modo pantalla completa: ${err.message}`);
+      });
+    } else {
+      document.exitFullscreen();
+    }
+  });
+</script>
+
 </body>
 </html>
 
