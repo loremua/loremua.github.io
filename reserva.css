@@ -1,7 +1,5 @@
-/* === IMPORTAR FUENTES === */
 @import url('https://fonts.googleapis.com/css2?family=Italianno&family=Cormorant+Garamond:wght@400;500;600&display=swap');
 
-/* === VARIABLES === */
 :root {
   --negro: #000000;
   --dorado: #d4af37;
@@ -10,7 +8,7 @@
   --texto-blanco: #ffffff;
 }
 
-/* === ESTILO GENERAL === */
+/* === GENERAL === */
 body {
   margin: 0;
   padding: 0;
@@ -21,10 +19,8 @@ body {
   color: var(--texto-blanco);
   text-align: center;
   min-height: 100vh;
-  animation: fadeIn 1.2s ease-in-out;
 }
 
-/* === LOGO === */
 .logo {
   position: fixed;
   top: 15px;
@@ -39,20 +35,15 @@ body {
   filter: drop-shadow(0 0 20px var(--dorado-claro));
 }
 
-/* === SECCIÓN SUPERIOR === */
 .header {
-  text-align: center;
   margin-top: 120px;
   margin-bottom: 40px;
-  animation: fadeInDown 1s ease both;
 }
 .title {
   font-family: 'Italianno', cursive;
-  font-size: 3.8rem;
+  font-size: 3.5rem;
   color: var(--dorado-claro);
-  margin-bottom: 10px;
   text-shadow: 0 0 20px var(--brillo-dorado);
-  font-weight: 400;
 }
 .subtitle {
   color: var(--dorado-claro);
@@ -60,7 +51,7 @@ body {
   text-shadow: 0 0 10px var(--brillo-dorado);
 }
 
-/* === TARJETAS DE SERVICIO === */
+/* === TARJETAS SERVICIOS === */
 .servicios-container {
   display: flex;
   flex-wrap: wrap;
@@ -88,7 +79,7 @@ body {
   box-shadow: 0 0 35px var(--dorado);
 }
 
-/* === FORMULARIO FECHA Y HORA === */
+/* === FORMULARIO === */
 .reserva-form {
   display: flex;
   flex-direction: column;
@@ -105,7 +96,6 @@ body {
   font-weight: 500;
   font-size: 1.1rem;
   color: var(--dorado-claro);
-  margin-bottom: 5px;
   text-align: left;
 }
 input[type="date"], input[type="time"] {
@@ -118,7 +108,7 @@ input[type="date"], input[type="time"] {
   width: 100%;
 }
 
-/* === BOTÓN DE RESERVA === */
+/* === BOTÓN === */
 #reservaBtn {
   margin-top: 10px;
   padding: 14px;
@@ -137,16 +127,6 @@ input[type="date"], input[type="time"] {
   box-shadow: 0 0 35px var(--dorado-claro);
 }
 
-/* === ANIMACIONES === */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-25px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
 /* === RESPONSIVE === */
 @media (max-width: 600px) {
   .title { font-size: 3rem; }
@@ -155,4 +135,5 @@ input[type="date"], input[type="time"] {
   .reserva-form { padding: 20px; gap: 15px; }
   #reservaBtn { font-size: 1.1rem; padding: 12px; }
 }
+
 
