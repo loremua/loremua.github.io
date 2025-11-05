@@ -11,7 +11,6 @@
   <!-- Estilos -->
   <link rel="stylesheet" href="reserva.css">
 </head>
-
 <body>
   <!-- LOGO -->
   <img src="Img.PNG" alt="Logo Lore Rodriguez" class="logo">
@@ -19,78 +18,65 @@
   <!-- SECCIÓN SUPERIOR -->
   <header class="header">
     <h1 class="title">Reserva tu cita</h1>
-    <p class="subtitle">Selecciona el servicio, fecha y hora que más te convenga</p>
   </header>
 
   <!-- CONTENEDOR PRINCIPAL -->
-  <section class="main-content">
-    
-    <!-- SELECCIÓN DE SERVICIO -->
-    <div class="form-section">
-      <h2 class="section-title">Elige tu servicio</h2>
-      <div class="servicios-container">
-        <div class="servicio-card" data-servicio="Maquillaje social">Maquillaje social</div>
-        <div class="servicio-card" data-servicio="Maquillaje social con ondas sueltas">Maquillaje social con ondas sueltas</div>
-        <div class="servicio-card" data-servicio="Maquillaje social con peinado sencillo">Maquillaje social con peinado sencillo</div>
-        <div class="servicio-card" data-servicio="Maquillaje social con planchado">Maquillaje social con planchado</div>
-      </div>
+  <section class="reserva-container">
+    <!-- TARJETAS DE SERVICIO -->
+    <div class="servicios-container">
+      <div class="servicio-card" data-servicio="Maquillaje social">Maquillaje social</div>
+      <div class="servicio-card" data-servicio="Maquillaje social con ondas sueltas">Maquillaje social con ondas sueltas</div>
+      <div class="servicio-card" data-servicio="Maquillaje social con peinado sencillo">Maquillaje social con peinado sencillo</div>
+      <div class="servicio-card" data-servicio="Maquillaje social con planchado">Maquillaje social con planchado</div>
     </div>
 
     <!-- SELECCIÓN DE FECHA -->
-    <div class="form-section">
-      <h2 class="section-title">Selecciona una fecha</h2>
-      <input type="date" id="fechaSeleccionada" min="<?= date('Y-m-d'); ?>">
+    <div class="input-container">
+      <label for="fecha">Selecciona la fecha:</label>
+      <input type="date" id="fecha" min="<?= date('Y-m-d'); ?>">
     </div>
 
     <!-- SELECCIÓN DE HORA -->
-    <div class="form-section">
-      <h2 class="section-title">Selecciona una hora</h2>
-      <input type="time" id="horaSeleccionada" min="05:00" max="22:00" step="900">
+    <div class="input-container">
+      <label for="hora">Selecciona la hora:</label>
+      <input type="time" id="hora" min="05:00" max="22:00">
     </div>
 
-    <!-- BOTÓN TERMINAR RESERVA -->
-    <div class="form-section">
-      <button id="reservaBtn" class="main-btn">Termina tu reserva</button>
+    <!-- BOTÓN RESERVA -->
+    <div class="boton-container">
+      <a href="#" id="reservaBtn" class="main-btn">Termina tu reserva</a>
     </div>
-
-    <!-- Input oculto para guardar el servicio seleccionado -->
-    <input type="hidden" id="servicioSeleccionado">
   </section>
 
-  <!-- SCRIPT -->
+  <!-- SCRIPT: selección de tarjeta y generar mensaje WhatsApp -->
   <script>
-    // Selección de tarjeta de servicio
-    const cards = document.querySelectorAll('.servicio-card');
-    const servicioInput = document.getElementById('servicioSeleccionado');
-
-    cards.forEach(card => {
-      card.addEventListener('click', () => {
-        // Quita selección de todas
-        cards.forEach(c => c.classList.remove('selected'));
-        // Añade selección a la clickeada
-        card.classList.add('selected');
-        // Guarda el servicio seleccionado
-        servicioInput.value = card.dataset.servicio;
+    const tarjetas = document.querySelectorAll('.servicio-card');
+    let servicioSeleccionado = '';
+    
+    tarjetas.forEach(tarjeta => {
+      tarjeta.addEventListener('click', () => {
+        tarjetas.forEach(t => t.classList.remove('selected'));
+        tarjeta.classList.add('selected');
+        servicioSeleccionado = tarjeta.dataset.servicio;
       });
     });
 
-    // Botón de reserva
-    const btn = document.getElementById('reservaBtn');
-    btn.addEventListener('click', () => {
-      const servicio = servicioInput.value;
-      const fecha = document.getElementById('fechaSeleccionada').value;
-      const hora = document.getElementById('horaSeleccionada').value;
+    const reservaBtn = document.getElementById('reservaBtn');
+    reservaBtn.addEventListener('click', () => {
+      const fecha = document.getElementById('fecha').value;
+      const hora = document.getElementById('hora').value;
 
-      if (!servicio || !fecha || !hora) {
-        alert("Por favor, selecciona servicio, fecha y hora antes de continuar.");
+      if (!servicioSeleccionado || !fecha || !hora) {
+        alert('Por favor, selecciona un servicio, una fecha y una hora.');
         return;
       }
 
-      const mensaje = `¡Hola Lore! Quisiera realizarme ${servicio} el día ${fecha} a las ${hora}`;
-      const urlWhats = `https://api.whatsapp.com/send?phone=593969426732&text=${encodeURIComponent(mensaje)}`;
-      window.open(urlWhats, '_blank');
+      const mensaje = `¡Hola Lore! Quisiera realizarme ${servicioSeleccionado} el día ${fecha} a las ${hora} ✨`;
+      const whatsappUrl = `https://api.whatsapp.com/send?phone=593969426732&text=${encodeURIComponent(mensaje)}`;
+
+      window.open(whatsappUrl, '_blank');
     });
   </script>
+
 </body>
 </html>
-
