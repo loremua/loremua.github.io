@@ -60,7 +60,7 @@
         caption.textContent = captionText || '';
         lightbox.classList.add('open');
         lightbox.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden'; // bloquear scroll
+        if (window.innerWidth > 600) document.body.style.overflow = 'hidden';
         // focus para accesibilidad
         closeBtn.focus();
       }
