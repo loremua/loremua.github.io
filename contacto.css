@@ -47,11 +47,12 @@ body {
 
 /* === TÍTULO === */
 .title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 3.8rem;
-  color: var(--texto-blanco);
-  text-shadow: 0 0 20px var(--brillo-dorado);
+  font-family: 'Italianno', cursive;
+  font-size: 3.5rem;
+  color: var(--dorado-claro);
   margin-bottom: 20px;
+  text-shadow: 0 0 20px var(--brillo-dorado);
+  font-weight: 400; /* Sin negrita */
 }
 
 /* === BOTÓN PRINCIPAL (Reserva tu cita) === */
@@ -83,6 +84,7 @@ body {
   flex-direction: column;
   align-items: center;
   max-width: 800px;
+  width: 100%;
 }
 
 /* === SECCIÓN DE REDES === */
@@ -150,7 +152,7 @@ body {
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 0 25px var(--brillo-dorado);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .map-container:hover {
@@ -180,6 +182,26 @@ iframe {
   to { box-shadow: 0 0 60px var(--dorado-claro); }
 }
 
+/* === DISTRIBUCIÓN EN DOS COLUMNAS (solo en escritorio) === */
+@media (min-width: 900px) {
+  .container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 60px;
+  }
+
+  .social-section {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .map-container {
+    flex: 1;
+    max-width: 500px;
+    margin-top: 0;
+  }
+}
 
 /* === ANIMACIONES === */
 @keyframes fadeIn {
