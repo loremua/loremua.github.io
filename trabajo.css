@@ -165,35 +165,48 @@ body {
   box-shadow: 0 10px 28px rgba(0,0,0,0.6);
 }
 
-/* === 🎯 FIX PARA TELÉFONOS (AQUÍ ESTABA EL PROBLEMA) === */
+/* === 🎯 FIX PARA TELÉFONOS (OPTIMIZADO) === */
 @media (max-width: 600px) {
 
   .lightbox {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.92);
+    z-index: 9999;
     padding: 0;
+    backdrop-filter: none; /* evitar conflictos con Safari */
+  }
+
+  .lightbox.open {
+    display: flex !important;
   }
 
   .lightbox-content {
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     max-height: none;
     border-radius: 0;
     justify-content: center;
+    background-color: rgba(0,0,0,0.95);
   }
 
   .lightbox-img {
     width: 100%;
-    height: 100%;
+    height: auto;
+    max-height: 85vh;
     object-fit: contain;
-    border-radius: 0;
   }
 
   .close {
     position: fixed;
-    top: 20px;
-    right: 20px;
+    top: 18px;
+    right: 18px;
+    z-index: 10000;
   }
 }
-
 /* === ANIMACIONES === */
 @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
 @keyframes fadeInDown { from { opacity: 0; transform: translateY(-25px); } to { opacity: 1; transform: translateY(0); } }
