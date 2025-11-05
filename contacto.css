@@ -47,7 +47,7 @@ body {
 
 /* === TÍTULO === */
 .title {
-  font-family: 'Italianno', cursive;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 3.8rem;
   color: var(--texto-blanco);
   text-shadow: 0 0 20px var(--brillo-dorado);
