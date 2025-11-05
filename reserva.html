@@ -18,53 +18,61 @@
   <!-- SECCIÓN SUPERIOR -->
   <header class="header">
     <h1 class="title">Reserva tu cita</h1>
-    <p style="color: var(--dorado-claro); font-weight: 500; text-shadow: 0 0 10px var(--brillo-dorado);">
-      Elige tu servicio, fecha y hora, y termina tu reserva fácilmente
-    </p>
+    <p class="subtitle">Elige tu servicio, fecha y hora de manera cómoda y rápida ✨</p>
   </header>
 
-  <!-- FORMULARIO DE RESERVA -->
+  <!-- FORMULARIO DE RESERVA VISUAL -->
   <section class="main-content">
-    <div class="reserva-form">
-      <!-- Selección de servicio -->
-      <label for="servicio" class="label">Selecciona tu servicio</label>
-      <select id="servicio">
-        <option value="" disabled selected>-- Escoge un servicio --</option>
-        <option value="Maquillaje social">Maquillaje social</option>
-        <option value="Maquillaje social con ondas sueltas">Maquillaje social con ondas sueltas</option>
-        <option value="Maquillaje social con peinado sencillo">Maquillaje social con peinado sencillo</option>
-        <option value="Maquillaje social con planchado">Maquillaje social con planchado</option>
-      </select>
 
-      <!-- Selección de fecha -->
+    <!-- SERVICIOS COMO TARJETAS -->
+    <div class="servicios-container">
+      <div class="servicio-card" data-servicio="Maquillaje social">Maquillaje social</div>
+      <div class="servicio-card" data-servicio="Maquillaje social con ondas sueltas">Maquillaje con ondas sueltas</div>
+      <div class="servicio-card" data-servicio="Maquillaje social con peinado sencillo">Maquillaje + peinado sencillo</div>
+      <div class="servicio-card" data-servicio="Maquillaje social con planchado">Maquillaje + planchado</div>
+    </div>
+
+    <!-- FECHA Y HORA -->
+    <div class="reserva-form">
       <label for="fecha" class="label">Selecciona la fecha</label>
       <input type="date" id="fecha">
 
-      <!-- Selección de hora -->
       <label for="hora" class="label">Selecciona la hora</label>
       <input type="time" id="hora" min="05:00" max="22:00">
 
-      <!-- Botón para WhatsApp -->
+      <!-- BOTÓN PARA WHATSAPP -->
       <button id="reservaBtn">Termina tu reserva</button>
     </div>
   </section>
 
-  <!-- SCRIPT PARA GENERAR LINK DE WHATSAPP -->
   <script>
+    let servicioSeleccionado = "";
+
+    // Selección de tarjetas
+    document.querySelectorAll('.servicio-card').forEach(card => {
+      card.addEventListener('click', function() {
+        // Remueve la selección previa
+        document.querySelectorAll('.servicio-card').forEach(c => c.classList.remove('selected'));
+        this.classList.add('selected');
+        servicioSeleccionado = this.getAttribute('data-servicio');
+      });
+    });
+
+    // Botón de reserva
     document.getElementById('reservaBtn').addEventListener('click', function() {
-      const servicio = document.getElementById('servicio').value;
       const fecha = document.getElementById('fecha').value;
       const hora = document.getElementById('hora').value;
 
-      if (!servicio || !fecha || !hora) {
+      if (!servicioSeleccionado || !fecha || !hora) {
         alert("Por favor, completa todos los campos para continuar.");
         return;
       }
 
-      const mensaje = `¡Hola Lore! Quisiera realizarme ${servicio} el día ${fecha} a las ${hora} ✨`;
+      const mensaje = `¡Hola Lore! Quisiera realizarme ${servicioSeleccionado} el día ${fecha} a las ${hora} ✨`;
       const url = `https://api.whatsapp.com/send?phone=593969426732&text=${encodeURIComponent(mensaje)}`;
       window.open(url, '_blank');
     });
   </script>
 </body>
 </html>
+
