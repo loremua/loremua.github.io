@@ -11,93 +11,86 @@
   <!-- Estilos -->
   <link rel="stylesheet" href="reserva.css">
 </head>
-<body>
 
+<body>
   <!-- LOGO -->
   <img src="Img.PNG" alt="Logo Lore Rodriguez" class="logo">
 
-  <!-- TÍTULO -->
+  <!-- SECCIÓN SUPERIOR -->
   <header class="header">
     <h1 class="title">Reserva tu cita</h1>
-    <p class="subtitle">Elige tu servicio, fecha y hora de manera cómoda ✨</p>
+    <p class="subtitle">Selecciona el servicio, fecha y hora que más te convenga ✨</p>
   </header>
 
   <!-- CONTENEDOR PRINCIPAL -->
   <section class="main-content">
-
-    <!-- SERVICIOS -->
-    <div class="servicios-container">
-      <div class="servicio-card" data-servicio="Maquillaje social">Maquillaje social</div>
-      <div class="servicio-card" data-servicio="Maquillaje con ondas sueltas">Maquillaje con ondas sueltas</div>
-      <div class="servicio-card" data-servicio="Maquillaje + peinado sencillo">Maquillaje + peinado sencillo</div>
-      <div class="servicio-card" data-servicio="Maquillaje + planchado">Maquillaje + planchado</div>
+    
+    <!-- SELECCIÓN DE SERVICIO -->
+    <div class="form-section">
+      <h2 class="section-title">Elige tu servicio</h2>
+      <div class="servicios-container">
+        <div class="servicio-card" data-servicio="Maquillaje social">Maquillaje social</div>
+        <div class="servicio-card" data-servicio="Maquillaje social con ondas sueltas">Maquillaje social con ondas sueltas</div>
+        <div class="servicio-card" data-servicio="Maquillaje social con peinado sencillo">Maquillaje social con peinado sencillo</div>
+        <div class="servicio-card" data-servicio="Maquillaje social con planchado">Maquillaje social con planchado</div>
+      </div>
     </div>
 
-    <!-- FECHA Y HORA -->
-    <div class="reserva-form">
-      <label for="fecha" class="label">Selecciona la fecha</label>
-      <input type="date" id="fecha">
-
-      <label for="hora" class="label">Selecciona la hora</label>
-      <input type="time" id="hora" min="05:00" max="22:00">
-
-      <!-- RESUMEN DINÁMICO -->
-      <p id="resumen" class="resumen">Aún no se ha seleccionado nada.</p>
-
-      <!-- BOTÓN -->
-      <button id="reservaBtn">Termina tu reserva</button>
+    <!-- SELECCIÓN DE FECHA -->
+    <div class="form-section">
+      <h2 class="section-title">Selecciona una fecha</h2>
+      <input type="date" id="fechaSeleccionada" min="<?= date('Y-m-d'); ?>">
     </div>
 
+    <!-- SELECCIÓN DE HORA -->
+    <div class="form-section">
+      <h2 class="section-title">Selecciona una hora</h2>
+      <input type="time" id="horaSeleccionada" min="05:00" max="22:00" step="900">
+    </div>
+
+    <!-- BOTÓN TERMINAR RESERVA -->
+    <div class="form-section">
+      <button id="reservaBtn" class="main-btn">Termina tu reserva</button>
+    </div>
+
+    <!-- Input oculto para guardar el servicio seleccionado -->
+    <input type="hidden" id="servicioSeleccionado">
   </section>
 
+  <!-- SCRIPT -->
   <script>
-    let servicioSeleccionado = "";
-    const fechaInput = document.getElementById('fecha');
-    const horaInput = document.getElementById('hora');
-    const resumen = document.getElementById('resumen');
-
-    // Función para actualizar el resumen
-    function actualizarResumen() {
-      if (servicioSeleccionado && fechaInput.value && horaInput.value) {
-        resumen.textContent = `Has elegido ${servicioSeleccionado} el ${fechaInput.value} a las ${horaInput.value} ✨`;
-      } else if (servicioSeleccionado) {
-        resumen.textContent = `Servicio seleccionado: ${servicioSeleccionado}.`;
-      } else {
-        resumen.textContent = "Aún no se ha seleccionado nada.";
-      }
-    }
-
-    // Selección de tarjetas
+    // Selección de tarjeta de servicio
     const cards = document.querySelectorAll('.servicio-card');
+    const servicioInput = document.getElementById('servicioSeleccionado');
+
     cards.forEach(card => {
-      card.addEventListener('click', function() {
+      card.addEventListener('click', () => {
+        // Quita selección de todas
         cards.forEach(c => c.classList.remove('selected'));
-        this.classList.add('selected');
-        servicioSeleccionado = this.dataset.servicio;
-        actualizarResumen();
+        // Añade selección a la clickeada
+        card.classList.add('selected');
+        // Guarda el servicio seleccionado
+        servicioInput.value = card.dataset.servicio;
       });
     });
 
-    // Actualizar resumen al cambiar fecha o hora
-    fechaInput.addEventListener('change', actualizarResumen);
-    horaInput.addEventListener('change', actualizarResumen);
-
     // Botón de reserva
-    document.getElementById('reservaBtn').addEventListener('click', () => {
-      const fecha = fechaInput.value;
-      const hora = horaInput.value;
+    const btn = document.getElementById('reservaBtn');
+    btn.addEventListener('click', () => {
+      const servicio = servicioInput.value;
+      const fecha = document.getElementById('fechaSeleccionada').value;
+      const hora = document.getElementById('horaSeleccionada').value;
 
-      if (!servicioSeleccionado || !fecha || !hora) {
-        alert("Por favor, completa todos los campos.");
+      if (!servicio || !fecha || !hora) {
+        alert("Por favor, selecciona servicio, fecha y hora antes de continuar.");
         return;
       }
 
-      const mensaje = `¡Hola Lore! Quisiera realizarme ${servicioSeleccionado} el día ${fecha} a las ${hora} ✨`;
-      const url = `https://api.whatsapp.com/send?phone=593969426732&text=${encodeURIComponent(mensaje)}`;
-      window.open(url, '_blank');
+      const mensaje = `¡Hola Lore! Quisiera realizarme ${servicio} el día ${fecha} a las ${hora} ✨`;
+      const urlWhats = `https://api.whatsapp.com/send?phone=593969426732&text=${encodeURIComponent(mensaje)}`;
+      window.open(urlWhats, '_blank');
     });
   </script>
-
 </body>
 </html>
 
