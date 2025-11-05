@@ -171,6 +171,16 @@ iframe {
   border-radius: 0;
 }
 
+:fullscreen .map-container {
+  animation: map-glow 1s ease-out;
+}
+
+@keyframes map-glow {
+  from { box-shadow: 0 0 0 var(--dorado); }
+  to { box-shadow: 0 0 60px var(--dorado-claro); }
+}
+
+
 /* === ANIMACIONES === */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(15px); }
