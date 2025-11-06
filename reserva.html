@@ -49,34 +49,44 @@
   </section>
 
   <!-- SCRIPT: selección de tarjeta y generar mensaje WhatsApp -->
-  <script>
-    const tarjetas = document.querySelectorAll('.servicio-card');
-    let servicioSeleccionado = '';
-    
-    tarjetas.forEach(tarjeta => {
-      tarjeta.addEventListener('click', () => {
-        tarjetas.forEach(t => t.classList.remove('selected'));
-        tarjeta.classList.add('selected');
-        servicioSeleccionado = tarjeta.dataset.servicio;
-      });
+<script>
+  const tarjetas = document.querySelectorAll('.servicio-card');
+  let servicioSeleccionado = '';
+  
+  tarjetas.forEach(tarjeta => {
+    tarjeta.addEventListener('click', () => {
+      tarjetas.forEach(t => t.classList.remove('selected'));
+      tarjeta.classList.add('selected');
+      servicioSeleccionado = tarjeta.dataset.servicio;
     });
+  });
 
-    const reservaBtn = document.getElementById('reservaBtn');
-    reservaBtn.addEventListener('click', () => {
-      const fecha = document.getElementById('fecha').value;
-      const hora = document.getElementById('hora').value;
+  const reservaBtn = document.getElementById('reservaBtn');
+  reservaBtn.addEventListener('click', () => {
+    const fecha = document.getElementById('fecha').value;
+    const hora = document.getElementById('hora').value;
 
-      if (!servicioSeleccionado || !fecha || !hora) {
-        alert('Por favor, selecciona un servicio, una fecha y una hora.');
-        return;
-      }
+    if (!servicioSeleccionado || !fecha || !hora) {
+      alert('Por favor, selecciona un servicio, una fecha y una hora.');
+      return;
+    }
 
-      const mensaje = `¡Hola Lore! Quisiera realizarme un ${servicioSeleccionado}, el día ${fecha} a las ${hora} ✨`;
-      const whatsappUrl = `https://api.whatsapp.com/send?phone=593969426732&text=${encodeURIComponent(mensaje)}`;
+    // 🔹 Convertir la fecha "aaaa-mm-dd" a "dd/mm/aaaa"
+    const [año, mes, dia] = fecha.split("-");
+    const fechaFormateada = `${dia}/${mes}/${año}`;
 
-      window.open(whatsappUrl, '_blank');
-    });
-  </script>
+    // 🔹 Obtener el nombre del día de la semana
+    const fechaObj = new Date(`${año}-${mes}-${dia}`);
+    const diasSemana = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+    const nombreDia = diasSemana[fechaObj.getDay()];
+
+    // 🔹 Mensaje con día de la semana incluido
+    const mensaje = `¡Hola Lore! Quisiera realizarme un ${servicioSeleccionado}, el ${nombreDia} ${fechaFormateada} a las ${hora} ✨`;
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=593969426732&text=${encodeURIComponent(mensaje)}`;
+
+    window.open(whatsappUrl, '_blank');
+  });
+</script>
 
 </body>
 </html>
